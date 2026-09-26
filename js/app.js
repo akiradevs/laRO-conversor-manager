@@ -1305,23 +1305,6 @@ function renderConverters() {
                                     </div>
 
 
-                                    <div class="converter-field">
-
-                                        <label>
-                                            Preço de venda
-                                        </label>
-
-                                        <input
-                                            type="number"
-                                            min="0"
-                                            step="0.01"
-                                            id="converter-sale-price-${converter.id}"
-                                            value="0"
-                                            oninput="updateConverterCalculation('${converter.id}')"
-                                        >
-
-                                    </div>
-
 
                                     <button
                                         type="button"
@@ -1336,46 +1319,12 @@ function renderConverters() {
 
                                 <div class="converter-results">
 
-                                    <div class="converter-result">
+                            <div class="converter-result">
 
-                                        Custo do lote:
-                                        <strong id="converter-batch-cost-${converter.id}">
-                                            0z
-                                        </strong>
-
-                                    </div>
-
-
-                                    <div class="converter-result">
-
-                                        Receita:
-                                        <strong id="converter-revenue-${converter.id}">
-                                            0z
-                                        </strong>
-
-                                    </div>
-
-
-                                    <div class="converter-result">
-
-                                        Lucro:
-                                        <strong id="converter-profit-${converter.id}">
-                                            0z
-                                        </strong>
-
-                                    </div>
-
-
-                                    <div class="converter-result">
-
-                                        Margem:
-                                        <strong id="converter-margin-${converter.id}">
-                                            0%
-                                        </strong>
-
-                                    </div>
-
-                                </div>
+                                Custo do lote:
+                                <strong id="converter-batch-cost-${converter.id}">
+                                    0z
+                                </strong>
 
                             </div>
 
@@ -1429,14 +1378,6 @@ function updateConverterCalculation(
         );
 
 
-    const salePrice =
-        Number(
-            document.getElementById(
-                `converter-sale-price-${converterId}`
-            )?.value || 0
-        );
-
-
     const unitCost =
         calculateConverterCost(
             converter
@@ -1446,26 +1387,6 @@ function updateConverterCalculation(
     const batchCost =
         unitCost *
         quantity;
-
-
-    const revenue =
-        salePrice *
-        quantity;
-
-
-    const profit =
-        revenue -
-        batchCost;
-
-
-    const margin =
-        revenue > 0
-            ? (
-                profit /
-                revenue
-            ) *
-                100
-            : 0;
 
 
     setText(
@@ -1481,28 +1402,6 @@ function updateConverterCalculation(
         formatZeny(
             batchCost
         )
-    );
-
-
-    setText(
-        `converter-revenue-${converterId}`,
-        formatZeny(
-            revenue
-        )
-    );
-
-
-    setText(
-        `converter-profit-${converterId}`,
-        formatZeny(
-            profit
-        )
-    );
-
-
-    setText(
-        `converter-margin-${converterId}`,
-        `${margin.toFixed(1)}%`
     );
 
 }
@@ -1532,14 +1431,6 @@ function registerProduction(
         Number(
             document.getElementById(
                 `converter-quantity-${converterId}`
-            )?.value || 0
-        );
-
-
-    const salePrice =
-        Number(
-            document.getElementById(
-                `converter-sale-price-${converterId}`
             )?.value || 0
         );
 
@@ -1620,22 +1511,7 @@ function registerProduction(
             unitCost *
             quantity,
 
-        salePrice:
-            salePrice,
 
-        expectedRevenue:
-            salePrice *
-            quantity,
-
-        expectedProfit:
-            (
-                salePrice *
-                quantity
-            ) -
-            (
-                unitCost *
-                quantity
-            ),
 
         date:
             getTodayDate(),
@@ -1718,7 +1594,7 @@ function renderProductionHistory() {
             <tr>
 
                 <td
-                    colspan="7"
+                    colspan="5"
                     class="empty-state"
                 >
                     Nenhuma produção registrada.
@@ -1802,18 +1678,6 @@ function renderProductionHistory() {
                             <td>
                                 ${formatZeny(
                                     production.batchCost
-                                )}
-                            </td>
-
-                            <td>
-                                ${formatZeny(
-                                    production.expectedRevenue
-                                )}
-                            </td>
-
-                            <td>
-                                ${formatZeny(
-                                    production.expectedProfit
                                 )}
                             </td>
 
