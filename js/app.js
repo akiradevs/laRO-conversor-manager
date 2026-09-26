@@ -18,6 +18,8 @@ function initializeApp() {
 
     initializePurchasePreview();
 
+    initializeSalePreview();
+
     initializeImport();
 
     populateSelects();
@@ -251,7 +253,184 @@ function updatePurchaseTotalPreview() {
     );
 
 }
+function initializeSalePreview() {
 
+    const converter =
+        document.getElementById(
+            "sale-converter"
+        );
+
+
+    const quantity =
+        document.getElementById(
+            "sale-quantity"
+        );
+
+
+    const price =
+        document.getElementById(
+            "sale-price"
+        );
+
+
+    if (converter) {
+
+        converter.addEventListener(
+            "change",
+            updateSalePreview
+        );
+
+    }
+
+
+    if (quantity) {
+
+        quantity.addEventListener(
+            "input",
+            updateSalePreview
+        );
+
+    }
+
+
+    if (price) {
+
+        price.addEventListener(
+            "input",
+            updateSalePreview
+        );
+
+    }
+
+
+    updateSalePreview();
+
+}
+
+
+function updateSalePreview() {
+
+    const converterId =
+        document.getElementById(
+            "sale-converter"
+        )?.value || "";
+
+
+    const quantity =
+        Number(
+            document.getElementById(
+                "sale-quantity"
+            )?.value || 0
+        );
+
+
+    const price =
+        Number(
+            document.getElementById(
+                "sale-price"
+            )?.value || 0
+        );
+
+
+    if (
+        !converterId ||
+        !Number.isFinite(quantity) ||
+        quantity <= 0
+    ) {
+
+        setText(
+            "sale-cost-preview",
+            "0z"
+        );
+
+
+        setText(
+            "sale-revenue-preview",
+            "0z"
+        );
+
+
+        setText(
+            "sale-profit-preview",
+            "0z"
+        );
+
+
+        return;
+
+    }
+
+
+    const cost =
+        calculateSaleCost(
+            converterId,
+            quantity
+        );
+
+
+    if (cost === null) {
+
+        setText(
+            "sale-cost-preview",
+            "0z"
+        );
+
+
+        setText(
+            "sale-revenue-preview",
+            "0z"
+        );
+
+
+        setText(
+            "sale-profit-preview",
+            "0z"
+        );
+
+
+        return;
+
+    }
+
+
+    const revenue =
+        quantity *
+        (
+            Number.isFinite(price)
+                ? price
+                : 0
+        );
+
+
+    const profit =
+        revenue -
+        cost;
+
+
+    setText(
+        "sale-cost-preview",
+        formatZeny(
+            cost
+        )
+    );
+
+
+    setText(
+        "sale-revenue-preview",
+        formatZeny(
+            revenue
+        )
+    );
+
+
+    setText(
+        "sale-profit-preview",
+        formatZeny(
+            profit
+        )
+    );
+
+}
 
 function registerPurchase() {
 
@@ -2243,6 +2422,9 @@ function registerSale(
     document.getElementById(
         "sale-price"
     ).value = "";
+
+
+    updateSalePreview();
 
 
     renderConverterStock();
