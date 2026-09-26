@@ -903,7 +903,51 @@ button {
     margin-top: 3px;
 }
 
+.sale-preview-box {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+    margin-top: 10px;
+    padding: 9px;
+    border: 1px solid #624b2a;
+    background:
+        linear-gradient(
+            135deg,
+            rgba(42, 32, 24, 0.98),
+            rgba(25, 19, 15, 0.98)
+        );
+}
 
+.sale-preview-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+    padding: 7px 8px;
+    border: 1px solid rgba(126, 91, 43, 0.42);
+    background: rgba(18, 14, 11, 0.72);
+}
+
+.sale-preview-item span {
+    color: #9d8158;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.sale-preview-item strong {
+    color: #e2bb67;
+    font-size: 13px;
+    font-weight: 700;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.sale-actions {
+    margin-top: 10px;
+}
 /* =========================================================
    PURCHASE TOTAL
 ========================================================= */
@@ -2077,6 +2121,9 @@ tbody tr:hover td {
         grid-template-columns:
             repeat(2, minmax(0, 1fr));
     }
+    .sale-preview-box {
+    grid-template-columns: 1fr;
+    }  
 
 }
 
