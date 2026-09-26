@@ -1317,20 +1317,24 @@ function renderConverters() {
                                 </div>
 
 
-                                <div class="converter-results">
+                                    <div class="converter-results">
 
-                            <div class="converter-result">
+                                        <div class="converter-result">
 
-                                Custo do lote:
-                                <strong id="converter-batch-cost-${converter.id}">
-                                    0z
-                                </strong>
+                                            Custo do lote:
+                                            <strong id="converter-batch-cost-${converter.id}">
+                                                0z
+                                            </strong>
 
-                            </div>
+                                        </div>
 
-                        </div>
+                                    </div>
 
-                    `;
+                                    </div>
+
+                                    </div>
+
+                                    `;
 
                 }
             )
