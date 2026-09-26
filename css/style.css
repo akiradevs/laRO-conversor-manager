@@ -1428,6 +1428,12 @@ tbody tr:hover td {
 
     overflow: hidden;
 }
+.converter-card > div:not(.converter-sprite-box) {
+    grid-column: 2;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+}
 
 .converter-sprite-box {
     position: relative;
