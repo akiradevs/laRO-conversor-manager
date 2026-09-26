@@ -1,0 +1,1441 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Ragnarok Converter Manager</title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+</head>
+
+<body>
+
+<div class="app">
+
+
+    <!-- =====================================================
+         CABEÇALHO NPC
+    ====================================================== -->
+
+    <header class="npc-header">
+
+        <div class="npc-portrait">
+
+            <div
+                id="npc-portrait-frame"
+                class="npc-portrait-frame"
+            >
+
+                <div class="npc-portrait-placeholder">
+                    NPC
+                </div>
+
+            </div>
+
+            <div
+                id="npc-portrait-frame-overlay"
+                class="npc-portrait-frame-overlay"
+                aria-hidden="true"
+            ></div>
+
+        </div>
+
+
+        <div class="npc-dialogue">
+
+            <div class="npc-name">
+                Gerente de Materiais
+            </div>
+
+            <div class="npc-dialogue-box">
+
+                <p>
+                    Bem-vindo, aventureiro.
+                </p>
+
+                <p>
+                    O que deseja administrar hoje?
+                </p>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- =====================================================
+         NAVEGAÇÃO
+    ====================================================== -->
+
+    <nav class="main-navigation">
+
+        <button
+            type="button"
+            class="nav-button active"
+            data-screen="dashboard"
+            onclick="openScreen('dashboard')"
+        >
+            <span class="nav-icon">◈</span>
+            <span>Início</span>
+        </button>
+
+
+        <button
+            type="button"
+            class="nav-button"
+            data-screen="purchases"
+            onclick="openScreen('purchases')"
+        >
+            <span class="nav-icon">◇</span>
+            <span>Compras</span>
+        </button>
+
+
+        <button
+            type="button"
+            class="nav-button"
+            data-screen="inventory"
+            onclick="openScreen('inventory')"
+        >
+            <span class="nav-icon">▣</span>
+            <span>Estoque</span>
+        </button>
+
+
+        <button
+            type="button"
+            class="nav-button"
+            data-screen="converters"
+            onclick="openScreen('converters')"
+        >
+            <span class="nav-icon">✦</span>
+            <span>Conversores</span>
+        </button>
+
+
+        <button
+            type="button"
+            class="nav-button"
+            data-screen="config"
+            onclick="openScreen('config')"
+        >
+            <span class="nav-icon">⚙</span>
+            <span>Configurações</span>
+        </button>
+
+    </nav>
+
+
+    <!-- =====================================================
+         CONTEÚDO
+    ====================================================== -->
+
+    <main class="main-content">
+
+
+        <!-- =================================================
+             DASHBOARD
+        ================================================== -->
+
+        <section
+            id="screen-dashboard"
+            class="screen active"
+        >
+
+            <div class="page-header">
+
+                <div>
+
+                    <span class="page-kicker">
+                        RAGNAROK LATAM
+                    </span>
+
+                    <h1>
+                        Central de Materiais
+                    </h1>
+
+                    <p>
+                        Gerencie suas compras, estoque,
+                        produção e vendas de conversores.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="npc-welcome-box">
+
+                <div class="npc-welcome-title">
+                    O que deseja fazer?
+                </div>
+
+                <p>
+                    Selecione uma opção para continuar.
+                </p>
+
+
+                <div class="menu-options">
+
+                    <button
+                        type="button"
+                        class="menu-option"
+                        onclick="openScreen('purchases')"
+                    >
+
+                        <span class="menu-option-icon">
+                            ◇
+                        </span>
+
+                        <span class="menu-option-text">
+
+                            <strong>
+                                Compras
+                            </strong>
+
+                            <small>
+                                Registrar materiais adquiridos
+                            </small>
+
+                        </span>
+
+                        <span class="menu-option-arrow">
+                            ›
+                        </span>
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="menu-option"
+                        onclick="openScreen('inventory')"
+                    >
+
+                        <span class="menu-option-icon">
+                            ▣
+                        </span>
+
+                        <span class="menu-option-text">
+
+                            <strong>
+                                Estoque
+                            </strong>
+
+                            <small>
+                                Consultar materiais disponíveis
+                            </small>
+
+                        </span>
+
+                        <span class="menu-option-arrow">
+                            ›
+                        </span>
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="menu-option"
+                        onclick="openScreen('converters')"
+                    >
+
+                        <span class="menu-option-icon">
+                            ✦
+                        </span>
+
+                        <span class="menu-option-text">
+
+                            <strong>
+                                Conversores
+                            </strong>
+
+                            <small>
+                                Produzir, controlar estoque e registrar vendas
+                            </small>
+
+                        </span>
+
+                        <span class="menu-option-arrow">
+                            ›
+                        </span>
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="section-title">
+                <span>Resumo</span>
+            </div>
+
+
+            <div class="dashboard-grid">
+
+                <div class="dashboard-card">
+
+                    <div class="dashboard-card-icon">
+                        ▣
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Materiais em estoque
+                        </span>
+
+                        <strong id="dashboard-material-stock">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="dashboard-card">
+
+                    <div class="dashboard-card-icon">
+                        Z
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Total investido
+                        </span>
+
+                        <strong id="dashboard-total-purchases">
+                            0z
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="dashboard-card">
+
+                    <div class="dashboard-card-icon">
+                        ◇
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Compras registradas
+                        </span>
+
+                        <strong id="dashboard-purchases">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="dashboard-card">
+
+                    <div class="dashboard-card-icon">
+                        ✦
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Conversores em estoque
+                        </span>
+
+                        <strong id="dashboard-converter-stock">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="dashboard-card">
+
+                    <div class="dashboard-card-icon">
+                        Z
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Receita realizada
+                        </span>
+
+                        <strong id="dashboard-realized-revenue">
+                            0z
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="dashboard-card">
+
+                    <div class="dashboard-card-icon">
+                        ◆
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Lucro realizado
+                        </span>
+
+                        <strong id="dashboard-realized-profit">
+                            0z
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             COMPRAS
+        ================================================== -->
+
+        <section
+            id="screen-purchases"
+            class="screen"
+        >
+
+            <div class="page-header">
+
+                <div>
+
+                    <span class="page-kicker">
+                        GERENCIAMENTO
+                    </span>
+
+                    <h1>
+                        Compras de Materiais
+                    </h1>
+
+                    <p>
+                        Registre cada compra individualmente
+                        para acompanhar preços e estoque.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="panel">
+
+                <div class="panel-title">
+
+                    <span>
+                        Nova compra
+                    </span>
+
+                    <span class="panel-title-decoration">
+                        ◆
+                    </span>
+
+                </div>
+
+
+                <form id="purchase-form">
+
+                    <div class="form-grid">
+
+                        <div class="form-group">
+
+                            <label for="purchase-material">
+                                Material
+                            </label>
+
+                            <select
+                                id="purchase-material"
+                                required
+                            >
+
+                                <option value="">
+                                    Selecione um material
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="purchase-quantity">
+                                Quantidade
+                            </label>
+
+                            <input
+                                type="number"
+                                id="purchase-quantity"
+                                min="1"
+                                step="1"
+                                placeholder="Ex.: 100"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="purchase-unit-price">
+                                Preço por unidade
+                            </label>
+
+                            <input
+                                type="number"
+                                id="purchase-unit-price"
+                                min="0"
+                                step="0.01"
+                                placeholder="Ex.: 800"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="purchase-date">
+                                Data
+                            </label>
+
+                            <input
+                                type="date"
+                                id="purchase-date"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="purchase-note">
+                            Observação da compra
+                        </label>
+
+                        <input
+                            type="text"
+                            id="purchase-note"
+                            placeholder="Ex.: Bazaar, compra de amigo, preço promocional..."
+                        >
+
+                    </div>
+
+
+                    <div class="purchase-total-box">
+
+                        <span>
+                            Total da compra
+                        </span>
+
+                        <strong id="purchase-total-preview">
+                            0z
+                        </strong>
+
+                    </div>
+
+
+                    <div class="form-actions">
+
+                        <button
+                            type="submit"
+                            class="primary-button"
+                        >
+                            Registrar Compra
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+
+            <!-- CONTROLE MENSAL -->
+
+            <div class="section-title">
+                <span>Controle mensal</span>
+            </div>
+
+
+            <div class="monthly-control-panel">
+
+                <div class="monthly-control-header">
+
+                    <div>
+
+                        <strong>
+                            Compras do período
+                        </strong>
+
+                        <span>
+                            Filtre o histórico por mês e material.
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="filters-grid">
+
+                    <div class="form-group">
+
+                        <label for="purchase-filter-month">
+                            Mês
+                        </label>
+
+                        <input
+                            type="month"
+                            id="purchase-filter-month"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="purchase-filter-material">
+                            Material
+                        </label>
+
+                        <select id="purchase-filter-material">
+
+                            <option value="">
+                                Todos os materiais
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="filter-button-area">
+
+                        <button
+                            type="button"
+                            id="clear-filters"
+                            class="secondary-button"
+                        >
+                            Limpar filtros
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="section-title">
+                <span>Resumo do período</span>
+            </div>
+
+
+            <div class="summary-grid">
+
+                <div class="summary-card">
+
+                    <span>
+                        Compras
+                    </span>
+
+                    <strong id="summary-purchases">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div class="summary-card">
+
+                    <span>
+                        Quantidade
+                    </span>
+
+                    <strong id="summary-quantity">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div class="summary-card">
+
+                    <span>
+                        Total gasto
+                    </span>
+
+                    <strong id="summary-spent">
+                        0z
+                    </strong>
+
+                </div>
+
+
+                <div class="summary-card">
+
+                    <span>
+                        Preço médio
+                    </span>
+
+                    <strong id="summary-average">
+                        0z
+                    </strong>
+
+                </div>
+
+
+                <div class="summary-card">
+
+                    <span>
+                        Menor preço
+                    </span>
+
+                    <strong id="summary-min">
+                        -
+                    </strong>
+
+                </div>
+
+
+                <div class="summary-card">
+
+                    <span>
+                        Maior preço
+                    </span>
+
+                    <strong id="summary-max">
+                        -
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="section-title">
+                <span>Histórico de compras</span>
+            </div>
+
+
+            <div class="panel table-panel">
+
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>Data</th>
+                                <th>Material</th>
+                                <th>Quantidade</th>
+                                <th>Preço unit.</th>
+                                <th>Total</th>
+                                <th>Observação</th>
+                                <th>Ação</th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="purchase-table">
+
+                            <tr>
+
+                                <td
+                                    colspan="7"
+                                    class="empty-state"
+                                >
+                                    Nenhuma compra registrada.
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             ESTOQUE
+        ================================================== -->
+
+        <section
+            id="screen-inventory"
+            class="screen"
+        >
+
+            <div class="page-header">
+
+                <div>
+
+                    <span class="page-kicker">
+                        CONTROLE
+                    </span>
+
+                    <h1>
+                        Estoque
+                    </h1>
+
+                    <p>
+                        Materiais disponíveis calculados automaticamente.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="inventory-info">
+
+                <div class="inventory-info-icon">
+                    !
+                </div>
+
+                <div>
+
+                    <strong>
+                        Estoque calculado automaticamente
+                    </strong>
+
+                    <p>
+                        Cada compra aumenta o estoque.
+                        Cada produção consome o material correspondente.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="section-title">
+                <span>Materiais</span>
+            </div>
+
+
+            <div id="inventory-grid"></div>
+
+        </section>
+
+
+        <!-- =================================================
+             CONVERSORES
+        ================================================== -->
+
+        <section
+            id="screen-converters"
+            class="screen"
+        >
+
+            <div class="page-header">
+
+                <div>
+
+                    <span class="page-kicker">
+                        PRODUÇÃO
+                    </span>
+
+                    <h1>
+                        Conversores
+                    </h1>
+
+                    <p>
+                        Produza conversores, acompanhe o estoque
+                        e registre suas vendas.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="inventory-info">
+
+                <div class="inventory-info-icon">
+                    Z
+                </div>
+
+                <div>
+
+                    <strong>
+                        Custo por conversor
+                    </strong>
+
+                    <p>
+                        Cada conversor utiliza 1 material elemental
+                        e 1 Pergaminho em Branco.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="section-title">
+                <span>Produção</span>
+            </div>
+
+
+            <div id="converter-grid"></div>
+
+
+            <div class="section-title">
+                <span>Estoque de Conversores</span>
+            </div>
+
+
+            <div class="converter-stock-panel">
+
+                <div
+                    class="converter-stock-grid"
+                    id="converter-stock-grid"
+                ></div>
+
+            </div>
+
+
+            <div class="section-title">
+                <span>Registrar Venda</span>
+            </div>
+
+
+            <div class="panel sale-panel">
+
+                <div class="panel-title">
+
+                    <span>
+                        Nova venda
+                    </span>
+
+                    <span class="panel-title-decoration">
+                        Z
+                    </span>
+
+                </div>
+
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+
+                        <label for="sale-converter">
+                            Conversor
+                        </label>
+
+                        <select id="sale-converter">
+
+                            <option value="">
+                                Selecione o conversor
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="sale-quantity">
+                            Quantidade
+                        </label>
+
+                        <input
+                            type="number"
+                            id="sale-quantity"
+                            min="1"
+                            step="1"
+                            placeholder="Ex.: 100"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="sale-price">
+                            Preço de venda por unidade
+                        </label>
+
+                        <input
+                            type="number"
+                            id="sale-price"
+                            min="0"
+                            step="0.01"
+                            placeholder="Ex.: 7500"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="sale-actions">
+
+                    <button
+                        type="button"
+                        class="primary-button"
+                        onclick="
+                            registerSale(
+                                document.getElementById('sale-converter').value,
+                                document.getElementById('sale-quantity').value,
+                                document.getElementById('sale-price').value
+                            )
+                        "
+                    >
+                        Registrar Venda
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="section-title">
+                <span>Histórico de Produção</span>
+            </div>
+
+
+            <div class="production-history-panel">
+
+                <div class="production-history-table-wrapper">
+
+                    <table class="production-history-table">
+
+                        <thead>
+
+                            <tr>
+
+                                <th>Data</th>
+                                <th>Conversor</th>
+                                <th>Quantidade</th>
+                                <th>Custo do lote</th>
+                                <th>Receita prevista</th>
+                                <th>Lucro previsto</th>
+                                <th>Ação</th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="production-table">
+
+                            <tr>
+
+                                <td
+                                    colspan="7"
+                                    class="empty-state"
+                                >
+                                    Nenhuma produção registrada.
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+
+            <div class="section-title">
+                <span>Histórico de Vendas</span>
+            </div>
+
+
+            <div class="production-history-panel">
+
+                <div class="production-history-table-wrapper">
+
+                    <table class="production-history-table">
+
+                        <thead>
+
+                            <tr>
+
+                                <th>Data</th>
+                                <th>Conversor</th>
+                                <th>Quantidade</th>
+                                <th>Custo</th>
+                                <th>Receita</th>
+                                <th>Lucro</th>
+                                <th>Preço unit.</th>
+                                <th>Ação</th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="sales-table">
+
+                            <tr>
+
+                                <td
+                                    colspan="8"
+                                    class="empty-state"
+                                >
+                                    Nenhuma venda registrada.
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             CONFIGURAÇÕES
+        ================================================== -->
+
+        <section
+            id="screen-config"
+            class="screen"
+        >
+
+            <div class="page-header">
+
+                <div>
+
+                    <span class="page-kicker">
+                        SISTEMA
+                    </span>
+
+                    <h1>
+                        Configurações
+                    </h1>
+
+                    <p>
+                        Personalize o gerenciador e seus backups.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="panel">
+
+                <div class="panel-title">
+
+                    <span>
+                        Configurações gerais
+                    </span>
+
+                    <span class="panel-title-decoration">
+                        ◆
+                    </span>
+
+                </div>
+
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+
+                        <label for="config-character-name">
+                            Personagem
+                        </label>
+
+                        <input
+                            type="text"
+                            id="config-character-name"
+                            placeholder="Nome do personagem"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="config-server">
+                            Servidor
+                        </label>
+
+                        <input
+                            type="text"
+                            id="config-server"
+                            value="LATAM"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="config-scroll-price">
+                            Preço do Pergaminho em Branco
+                        </label>
+
+                        <input
+                            type="number"
+                            id="config-scroll-price"
+                            min="0"
+                            step="1"
+                            value="4000"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-actions">
+
+                    <button
+                        type="button"
+                        class="primary-button"
+                        onclick="saveConfig()"
+                    >
+                        Salvar configurações
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- NPC -->
+
+            <div class="section-title">
+                <span>Aparência do NPC</span>
+            </div>
+
+
+            <div class="panel npc-settings-panel">
+
+                <div class="panel-title">
+
+                    <span>
+                        Imagem do NPC
+                    </span>
+
+                    <span class="panel-title-decoration">
+                        ◆
+                    </span>
+
+                </div>
+
+
+                <div class="npc-settings-content">
+
+                    <div class="npc-settings-preview">
+
+                        <div
+                            id="npc-settings-preview"
+                            class="npc-settings-image-preview"
+                        >
+                            <span>
+                                NPC
+                            </span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="npc-settings-info">
+
+                        <strong>
+                            Retrato personalizado
+                        </strong>
+
+                        <p>
+                            PNG, JPEG, JPG ou GIF podem ser utilizados.
+                        </p>
+
+                        <p>
+                            A imagem será recortada para uma moldura
+                            final de <strong>120 × 120 px</strong>.
+                        </p>
+
+
+                        <div class="npc-settings-actions">
+
+                            <button
+                                type="button"
+                                class="primary-button"
+                                onclick="openNpcFileSelector()"
+                            >
+                                Escolher imagem
+                            </button>
+
+
+                            <button
+                                type="button"
+                                class="secondary-button"
+                                onclick="restoreDefaultNpcImage()"
+                            >
+                                Restaurar padrão
+                            </button>
+
+                        </div>
+
+
+                        <input
+                            type="file"
+                            id="npc-image-input"
+                            accept="image/png,image/jpeg,image/jpg,image/gif"
+                            hidden
+                        >
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- BACKUP -->
+
+            <div class="section-title">
+                <span>Dados locais</span>
+            </div>
+
+
+            <div class="panel backup-panel">
+
+                <div class="panel-title">
+
+                    <span>
+                        Exportar / importar dados
+                    </span>
+
+                    <span class="panel-title-decoration">
+                        ◆
+                    </span>
+
+                </div>
+
+
+                <div class="backup-content">
+
+                    <p>
+                        Os dados ficam salvos neste navegador.
+                        Use o backup para transferir seus registros
+                        para outro navegador ou computador.
+                    </p>
+
+
+                    <div class="backup-actions">
+
+                        <button
+                            type="button"
+                            class="primary-button"
+                            onclick="exportData()"
+                        >
+                            Exportar dados
+                        </button>
+
+
+                        <button
+                            type="button"
+                            class="secondary-button"
+                            onclick="openImportSelector()"
+                        >
+                            Importar dados
+                        </button>
+
+                    </div>
+
+
+                    <input
+                        type="file"
+                        id="import-data-input"
+                        accept="application/json,.json"
+                        hidden
+                    >
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+<!-- =====================================================
+     RODAPÉ
+====================================================== -->
+
+<footer class="app-footer">
+
+    <span>
+        Ragnarok Converter Manager
+    </span>
+
+    <span>
+        LATAM
+    </span>
+
+    <a
+        href="https://livepix.gg/akirazord"
+        target="_blank"
+        rel="noopener noreferrer"
+    >
+        LivePix
+    </a>
+
+</footer>
+
+
+<!-- =========================================================
+     SCRIPTS
+========================================================== -->
+
+<script src="js/data.js"></script>
+<script src="js/storage.js"></script>
+<script src="js/npc.js"></script>
+<script src="js/app.js"></script>
+
+</body>
+</html>

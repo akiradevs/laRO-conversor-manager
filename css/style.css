@@ -1,0 +1,2155 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    min-height: 100%;
+    background: #110f0d;
+}
+
+body {
+    min-height: 100vh;
+
+    margin: 0;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    color: #eee5d8;
+
+    background-color: #110f0d;
+
+    background-image:
+        radial-gradient(
+            circle at top,
+            #493b2b 0%,
+            #2a211a 35%,
+            #17120f 68%,
+            #0c0a08 100%
+        );
+
+    background-attachment: fixed;
+}
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   APP
+========================================================= */
+
+.app {
+    width: min(
+        1280px,
+        calc(100% - 32px)
+    );
+
+    min-height: calc(100vh - 32px);
+
+    margin: 16px auto;
+
+    padding: 18px;
+
+    border: 1px solid #80622f;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(44, 35, 28, 0.98),
+            rgba(24, 19, 16, 0.98)
+        );
+
+    box-shadow:
+        0 0 0 1px rgba(0, 0, 0, 0.9),
+        0 0 0 3px rgba(77, 57, 29, 0.45),
+        0 20px 60px rgba(0, 0, 0, 0.55);
+}
+
+
+/* =========================================================
+   NPC HEADER
+========================================================= */
+
+.npc-header {
+    display: grid;
+
+    grid-template-columns:
+        140px minmax(0, 1fr);
+
+    gap: 18px;
+
+    padding: 12px;
+
+    border: 1px solid #8a6b35;
+
+    background:
+        linear-gradient(
+            135deg,
+            #352b23,
+            #211b17
+        );
+
+    box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.025),
+        inset 0 -12px 30px rgba(0, 0, 0, 0.25);
+}
+
+
+/* =========================================================
+   NPC PORTRAIT
+========================================================= */
+
+.npc-portrait {
+    position: relative;
+
+    width: 120px;
+    height: 120px;
+
+    align-self: center;
+}
+
+.npc-portrait-frame {
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 120px;
+    height: 120px;
+
+    border: 1px solid #b28a42;
+
+    background:
+        radial-gradient(
+            circle,
+            #4b3b27,
+            #17130f
+        );
+
+    box-shadow:
+        inset 0 0 0 2px #261d15,
+        inset 0 0 14px rgba(0, 0, 0, 0.75),
+        0 0 0 1px #100d0a;
+
+    overflow: hidden;
+}
+
+.npc-portrait-frame::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 3px;
+
+    border: 1px solid rgba(
+        221,
+        180,
+        96,
+        0.32
+    );
+
+    pointer-events: none;
+
+    z-index: 5;
+}
+
+.npc-portrait-frame .npc-portrait-placeholder {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 120px;
+    height: 120px;
+
+    color: #7e6b53;
+
+    font-size: 10px;
+
+    letter-spacing: 1px;
+}
+
+.npc-portrait-frame .npc-portrait-image {
+    position: absolute;
+
+    display: block;
+
+    width: 120px;
+    height: 120px;
+
+    max-width: none;
+    max-height: none;
+
+    margin: 0;
+
+    object-fit: cover;
+
+    pointer-events: none;
+
+    user-select: none;
+}
+
+.npc-portrait-frame-overlay {
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 20;
+
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   NPC DIALOGUE
+========================================================= */
+
+.npc-dialogue {
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+}
+
+.npc-name {
+    margin-bottom: 7px;
+
+    color: #e1bc69;
+
+    font-size: 15px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.8px;
+
+    text-shadow:
+        0 1px 2px #000;
+}
+
+.npc-dialogue-box {
+    min-height: 74px;
+
+    padding: 13px 16px;
+
+    border: 1px solid #73582d;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(16, 13, 11, 0.88),
+            rgba(29, 23, 19, 0.94)
+        );
+
+    box-shadow:
+        inset 0 0 18px rgba(0, 0, 0, 0.4);
+}
+
+.npc-dialogue-box p {
+    margin: 0;
+
+    color: #d7cfc2;
+
+    font-size: 12px;
+
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   NAVEGAÇÃO
+========================================================= */
+
+.main-navigation {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    flex-wrap: wrap;
+
+    gap: 5px;
+
+    margin-top: 12px;
+
+    padding: 5px;
+
+    border: 1px solid #70562c;
+
+    background:
+        linear-gradient(
+            180deg,
+            #2a211b,
+            #1b1511
+        );
+}
+
+.nav-button {
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    min-height: 36px;
+
+    padding: 7px 14px;
+
+    border: 1px solid transparent;
+
+    border-radius: 2px;
+
+    color: #a99880;
+
+    background: transparent;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.7px;
+
+    text-transform: uppercase;
+
+    transition:
+        background 0.15s ease,
+        border-color 0.15s ease,
+        color 0.15s ease;
+}
+
+.nav-button:hover {
+    color: #e2bf72;
+
+    background: #30241b;
+
+    border-color: #76592d;
+}
+
+.nav-button.active {
+    color: #f0ce7d;
+
+    background:
+        linear-gradient(
+            180deg,
+            #4b3823,
+            #322519
+        );
+
+    border-color: #a57c38;
+
+    box-shadow:
+        inset 0 0 12px rgba(
+            0,
+            0,
+            0,
+            0.25
+        );
+}
+
+.nav-icon {
+    color: #c39a4b;
+
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   SCREENS
+========================================================= */
+
+.screen {
+    display: none;
+}
+
+.screen.active {
+    display: block;
+}
+
+
+/* =========================================================
+   PAGE HEADER
+========================================================= */
+
+.page-header {
+    margin: 18px 2px 16px;
+
+    padding-bottom: 12px;
+
+    border-bottom: 1px solid rgba(
+        144,
+        106,
+        47,
+        0.42
+    );
+}
+
+.page-kicker {
+    display: block;
+
+    margin-bottom: 4px;
+
+    color: #a37c3c;
+
+    font-size: 9px;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+}
+
+.page-header h1 {
+    margin: 0;
+
+    color: #e0bd72;
+
+    font-size: 22px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.5px;
+
+    text-shadow:
+        0 1px 2px #000;
+}
+
+.page-header p {
+    margin: 5px 0 0;
+
+    color: #8d8173;
+
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   SECTION TITLE
+========================================================= */
+
+.section-title {
+    display: flex;
+
+    align-items: center;
+
+    gap: 11px;
+
+    margin: 20px 0 10px;
+
+    color: #bd9650;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: 1.5px;
+
+    text-transform: uppercase;
+}
+
+.section-title::after {
+    content: "";
+
+    flex: 1;
+
+    height: 1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(137, 101, 48, 0.48),
+            transparent
+        );
+}
+
+
+/* =========================================================
+   NPC WELCOME
+========================================================= */
+
+.npc-welcome-box {
+    padding: 17px;
+
+    border: 1px solid #72572d;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(55, 43, 33, 0.96),
+            rgba(30, 24, 20, 0.98)
+        );
+
+    box-shadow:
+        inset 0 0 25px rgba(
+            0,
+            0,
+            0,
+            0.2
+        );
+}
+
+.npc-welcome-title {
+    color: #dfbd73;
+
+    font-size: 14px;
+
+    font-weight: 700;
+}
+
+.npc-welcome-box > p {
+    margin: 4px 0 14px;
+
+    color: #8e8173;
+
+    font-size: 10px;
+}
+
+.menu-options {
+    display: grid;
+
+    gap: 7px;
+}
+
+.menu-option {
+    display: grid;
+
+    grid-template-columns:
+        36px minmax(0, 1fr) 24px;
+
+    align-items: center;
+
+    width: 100%;
+
+    min-height: 54px;
+
+    padding: 7px 10px;
+
+    border: 1px solid #59482f;
+
+    color: #d2c5b2;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(55, 43, 33, 0.95),
+            rgba(30, 24, 20, 0.98)
+        );
+
+    text-align: left;
+
+    transition:
+        background 0.15s ease,
+        border-color 0.15s ease,
+        transform 0.15s ease;
+}
+
+.menu-option:hover {
+    border-color: #a77e3c;
+
+    background:
+        linear-gradient(
+            90deg,
+            #4b3823,
+            #2c2119
+        );
+
+    transform: translateX(2px);
+}
+
+.menu-option-icon {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 28px;
+    height: 28px;
+
+    border: 1px solid #76592e;
+
+    color: #c49b4d;
+
+    background: #17120f;
+
+    font-size: 14px;
+}
+
+.menu-option-text {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 2px;
+}
+
+.menu-option-text strong {
+    color: #dfc17e;
+
+    font-size: 11px;
+}
+
+.menu-option-text small {
+    color: #8e8173;
+
+    font-size: 9px;
+}
+
+.menu-option-arrow {
+    color: #b48940;
+
+    font-size: 20px;
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   DASHBOARD
+========================================================= */
+
+.dashboard-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 9px;
+}
+
+.dashboard-card {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    min-height: 76px;
+
+    padding: 11px;
+
+    border: 1px solid #614c2d;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(48, 38, 30, 0.96),
+            rgba(28, 22, 18, 0.98)
+        );
+}
+
+.dashboard-card-icon {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 36px;
+    height: 36px;
+
+    flex-shrink: 0;
+
+    border: 1px solid #795d31;
+
+    color: #c59c4e;
+
+    background: #18130f;
+
+    font-size: 13px;
+}
+
+.dashboard-card span {
+    display: block;
+
+    color: #8f8172;
+
+    font-size: 9px;
+}
+
+.dashboard-card strong {
+    display: block;
+
+    margin-top: 3px;
+
+    color: #dfc078;
+
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   PAINÉIS
+========================================================= */
+
+.panel {
+    border: 1px solid #624b2a;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(43, 34, 27, 0.97),
+            rgba(27, 21, 17, 0.98)
+        );
+
+    box-shadow:
+        inset 0 0 0 1px rgba(
+            255,
+            255,
+            255,
+            0.012
+        );
+}
+
+.panel-title {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 11px 14px;
+
+    border-bottom: 1px solid rgba(
+        117,
+        86,
+        40,
+        0.42
+    );
+
+    color: #d5ae61;
+
+    font-size: 11px;
+
+    font-weight: 700;
+}
+
+.panel-title-decoration {
+    color: #8f6a32;
+
+    font-size: 9px;
+}
+
+.panel > form,
+.panel > .form-grid,
+.panel > .sale-actions,
+.panel > .backup-content {
+    padding: 15px;
+}
+
+
+/* =========================================================
+   FORM
+========================================================= */
+
+.form-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 11px;
+
+    padding: 15px;
+}
+
+.form-group {
+    min-width: 0;
+
+    margin-bottom: 11px;
+}
+
+.form-grid .form-group {
+    margin-bottom: 0;
+}
+
+.form-group label {
+    display: block;
+
+    margin-bottom: 5px;
+
+    color: #ae9a7d;
+
+    font-size: 10px;
+
+    font-weight: 700;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+
+    min-height: 34px;
+
+    padding: 7px 9px;
+
+    border: 1px solid #614921;
+
+    border-radius: 2px;
+
+    outline: none;
+
+    color: #eee4d6;
+
+    background: #19130f;
+
+    font-size: 11px;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: #a77c35;
+
+    box-shadow:
+        0 0 0 1px rgba(
+            167,
+            124,
+            53,
+            0.15
+        );
+}
+
+.form-group input::placeholder {
+    color: #665a4d;
+}
+
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+.primary-button,
+.secondary-button {
+    min-height: 34px;
+
+    padding: 7px 13px;
+
+    border-radius: 2px;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    transition:
+        background 0.15s ease,
+        border-color 0.15s ease;
+}
+
+.primary-button {
+    color: #251a0e;
+
+    border: 1px solid #d0a75c;
+
+    background:
+        linear-gradient(
+            180deg,
+            #d9ba76,
+            #a9803e
+        );
+
+    box-shadow:
+        inset 0 1px rgba(
+            255,
+            255,
+            255,
+            0.25
+        );
+}
+
+.primary-button:hover {
+    background:
+        linear-gradient(
+            180deg,
+            #e6ca8d,
+            #b48d4a
+        );
+}
+
+.secondary-button {
+    color: #d0bd9c;
+
+    border: 1px solid #71562d;
+
+    background: #2b2119;
+}
+
+.secondary-button:hover {
+    color: #edcf89;
+
+    border-color: #a27b39;
+
+    background: #38291d;
+}
+
+.form-actions,
+.sale-actions {
+    display: flex;
+
+    gap: 8px;
+
+    margin-top: 3px;
+}
+
+
+/* =========================================================
+   PURCHASE TOTAL
+========================================================= */
+
+.purchase-total-box {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin: 4px 0 13px;
+
+    padding: 10px 12px;
+
+    border: 1px solid #624b2a;
+
+    background: rgba(
+        17,
+        13,
+        10,
+        0.48
+    );
+}
+
+.purchase-total-box span {
+    color: #918171;
+
+    font-size: 10px;
+}
+
+.purchase-total-box strong {
+    color: #dfc077;
+
+    font-size: 15px;
+}
+
+
+/* =========================================================
+   FILTROS MENSAIS
+========================================================= */
+
+.monthly-control-panel {
+    padding: 14px;
+
+    border: 1px solid #624b2a;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(43, 34, 27, 0.96),
+            rgba(27, 21, 17, 0.98)
+        );
+}
+
+.monthly-control-header {
+    margin-bottom: 12px;
+}
+
+.monthly-control-header strong {
+    display: block;
+
+    color: #d6b36b;
+
+    font-size: 11px;
+}
+
+.monthly-control-header span {
+    display: block;
+
+    margin-top: 3px;
+
+    color: #88796a;
+
+    font-size: 9px;
+}
+
+.filters-grid {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        minmax(0, 1fr)
+        auto;
+
+    gap: 10px;
+
+    align-items: end;
+}
+
+.filter-button-area {
+    display: flex;
+
+    align-items: flex-end;
+}
+
+
+/* =========================================================
+   RESUMO
+========================================================= */
+
+.summary-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(6, minmax(0, 1fr));
+
+    gap: 7px;
+}
+
+.summary-card {
+    min-width: 0;
+
+    padding: 10px;
+
+    border: 1px solid #5e492c;
+
+    background:
+        rgba(
+            31,
+            24,
+            19,
+            0.9
+        );
+}
+
+.summary-card span {
+    display: block;
+
+    color: #817466;
+
+    font-size: 8px;
+
+    text-transform: uppercase;
+}
+
+.summary-card strong {
+    display: block;
+
+    margin-top: 4px;
+
+    color: #d7b86f;
+
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   TABELAS
+========================================================= */
+
+.table-panel,
+.production-history-panel {
+    overflow: hidden;
+}
+
+.table-wrapper,
+.production-history-table-wrapper {
+    width: 100%;
+
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+
+    border-collapse: collapse;
+}
+
+th {
+    padding: 9px 10px;
+
+    border-bottom: 1px solid #6d522b;
+
+    color: #b9934d;
+
+    background: #251c16;
+
+    font-size: 9px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.4px;
+
+    text-align: left;
+
+    text-transform: uppercase;
+
+    white-space: nowrap;
+}
+
+td {
+    padding: 9px 10px;
+
+    border-bottom: 1px solid rgba(
+        107,
+        78,
+        39,
+        0.2
+    );
+
+    color: #c2b5a5;
+
+    background: rgba(
+        28,
+        22,
+        18,
+        0.82
+    );
+
+    font-size: 10px;
+
+    vertical-align: middle;
+}
+
+tbody tr:hover td {
+    background: rgba(
+        68,
+        51,
+        32,
+        0.35
+    );
+}
+
+.empty-state {
+    padding: 30px 20px;
+
+    color: #77695b;
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   ACTION BUTTONS DA TABELA
+========================================================= */
+
+.table-action-button {
+    min-height: 25px;
+
+    padding: 4px 8px;
+
+    border: 1px solid #684444;
+
+    border-radius: 2px;
+
+    color: #d7a9a9;
+
+    background: #2c1a1a;
+
+    font-size: 9px;
+}
+
+.table-action-button:hover {
+    background: #442323;
+
+    border-color: #8d5353;
+}
+
+
+/* =========================================================
+   INVENTÁRIO
+========================================================= */
+
+.inventory-info {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 11px 12px;
+    border: 1px solid #644d2b;
+    background:
+        rgba(
+            46,
+            35,
+            25,
+            0.7
+        );
+}
+
+.inventory-info-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 27px;
+    height: 27px;
+    flex-shrink: 0;
+    border: 1px solid #806334;
+    color: #d0aa5e;
+    background: #1b140f;
+    font-weight: 700;
+}
+
+.inventory-info strong {
+    display: block;
+    color: #d3b16c;
+    font-size: 10px;
+}
+
+.inventory-info p {
+    margin: 3px 0 0;
+    color: #8a7c6d;
+    font-size: 9px;
+    line-height: 1.5;
+}
+
+#inventory-grid {
+    display: grid;
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.inventory-card {
+    position: relative;
+    display: grid;
+    grid-template-columns:
+        58px minmax(0, 1fr);
+    gap: 12px;
+    min-height: 104px;
+    padding: 13px;
+    border: 1px solid #674e2b;
+    background:
+        linear-gradient(
+            135deg,
+            rgba(48, 38, 29, 0.98),
+            rgba(28, 22, 18, 0.98)
+        );
+}
+
+/* ÍCONE — mantido exatamente como estava */
+
+.inventory-item-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 58px;
+    height: 58px;
+    align-self: center;
+    border: 1px solid #76572c;
+    background:
+        radial-gradient(
+            circle,
+            rgba(104, 81, 48, 0.35),
+            #17120f
+        );
+    overflow: hidden;
+}
+
+.inventory-item-icon img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    image-rendering: pixelated;
+}
+
+
+/* =========================================================
+   TEXTO DO ESTOQUE
+   PADRÃO VISUAL BASEADO NOS CONVERSORES
+========================================================= */
+
+/* Nome = mesmo padrão de .converter-name */
+
+.inventory-item-name {
+    margin: 0;
+    color: #e2bb67;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+
+/* Elemento = mesmo padrão de .converter-element */
+
+.inventory-item-element {
+    margin-top: 4px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(
+        126,
+        91,
+        43,
+        0.42
+    );
+    color: #9d8158;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+
+/* =========================================================
+   DADOS DO ESTOQUE
+   MESMO PADRÃO DOS .converter-stats
+========================================================= */
+
+.inventory-item-data {
+    display: grid;
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+    gap: 6px;
+    margin-top: 9px;
+}
+
+
+/* Cada informação = mesmo padrão de .converter-stat */
+
+.inventory-data-box {
+    min-width: 0;
+    padding: 7px;
+    border: 1px solid rgba(
+        111,
+        80,
+        41,
+        0.4
+    );
+    background:
+        rgba(
+            17,
+            13,
+            10,
+            0.48
+        );
+}
+
+
+/* "Estoque", "Comprado", "Médio"
+   = mesmo padrão de .converter-stat-label */
+
+.inventory-data-box span {
+    display: block;
+    margin-bottom: 3px;
+    color: #827467;
+    font-size: 8px;
+    text-transform: uppercase;
+}
+
+
+/* Valores = mesmo padrão de .converter-stat-value */
+
+.inventory-data-box strong {
+    display: block;
+    color: #d7be88;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   STATUS
+========================================================= */
+
+.inventory-status {
+    grid-column: 2;
+    display: inline-flex;
+    justify-self: start;
+    margin-top: 9px;
+    padding: 3px 6px;
+    border: 1px solid #604b2d;
+    color: #a99882;
+    background:
+        rgba(
+            20,
+            15,
+            12,
+            0.45
+        );
+    font-size: 8px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.inventory-status.low {
+    color: #dfaaaa;
+    border-color: #754646;
+    background: #321d1d;
+}
+
+.stock-ok {
+    color: #b9c69d;
+}
+
+.stock-low {
+    color: #dfaaaa;
+}
+
+
+/* =========================================================
+   CONVERSORES
+========================================================= */
+
+#converter-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 12px;
+}
+
+.converter-card {
+    position: relative;
+
+    display: grid;
+
+    grid-template-columns:
+        82px minmax(0, 1fr);
+
+    column-gap: 15px;
+
+    min-height: 215px;
+
+    padding: 15px;
+
+    border: 1px solid #674e2b;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(49, 39, 30, 0.98),
+            rgba(29, 22, 18, 0.98)
+        );
+
+    overflow: hidden;
+}
+
+.converter-sprite-box {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 70px;
+    height: 70px;
+    justify-self: center;
+    align-self: start;
+    border: 1px solid #76572c;
+    background:
+        radial-gradient(
+            circle,
+            rgba(110, 86, 51, 0.3),
+            #17120f
+        );
+    overflow: hidden;
+}
+
+.converter-sprite-box img {
+
+    width: 40px;
+
+    height: 40px;
+
+    object-fit: contain;
+
+    object-position: center center;
+
+    display: block;
+
+    margin: 0 auto;
+
+    image-rendering: pixelated;
+
+}
+
+.converter-header {
+    padding-bottom: 8px;
+
+    border-bottom: 1px solid rgba(
+        126,
+        91,
+        43,
+        0.42
+    );
+}
+
+.converter-name {
+    color: #e2bb67;
+
+    font-size: 15px;
+
+    font-weight: 700;
+}
+
+.converter-element {
+    margin-top: 4px;
+
+    color: #9d8158;
+
+    font-size: 9px;
+
+    font-weight: 700;
+
+    letter-spacing: 1px;
+}
+
+.converter-material {
+    grid-column: 2;
+
+    padding: 9px 0;
+
+    border-bottom: 1px solid rgba(
+        126,
+        91,
+        43,
+        0.42
+    );
+}
+
+.converter-material-label {
+    color: #817262;
+
+    font-size: 8px;
+
+    text-transform: uppercase;
+}
+
+.converter-material-name {
+    margin-top: 3px;
+
+    color: #dac9b0;
+
+    font-size: 11px;
+
+    font-weight: 700;
+}
+
+.converter-material-stock {
+    margin-top: 3px;
+
+    color: #8f8172;
+
+    font-size: 9px;
+}
+
+.converter-stats {
+    grid-column: 2;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 6px;
+
+    margin-top: 9px;
+}
+
+.converter-stat {
+    padding: 7px;
+
+    border: 1px solid rgba(
+        111,
+        80,
+        41,
+        0.4
+    );
+
+    background: rgba(
+        17,
+        13,
+        10,
+        0.48
+    );
+}
+
+.converter-stat-label {
+    display: block;
+
+    margin-bottom: 3px;
+
+    color: #827467;
+
+    font-size: 8px;
+
+    text-transform: uppercase;
+}
+
+.converter-stat-value {
+    display: block;
+
+    color: #d7be88;
+
+    font-size: 11px;
+
+    font-weight: 700;
+}
+
+.converter-form {
+    grid-column: 2;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 7px;
+
+    margin-top: 9px;
+
+    padding-top: 9px;
+
+    border-top: 1px solid rgba(
+        126,
+        91,
+        43,
+        0.42
+    );
+}
+
+.converter-field label {
+    display: block;
+
+    margin-bottom: 4px;
+
+    color: #9d8b77;
+
+    font-size: 8px;
+}
+
+.converter-field input {
+    width: 100%;
+
+    min-height: 30px;
+
+    padding: 5px 7px;
+
+    border: 1px solid #614821;
+
+    color: #eee4d6;
+
+    background: #18130f;
+
+    font-size: 10px;
+}
+
+.converter-results {
+    grid-column: 2;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 5px 12px;
+
+    margin-top: 7px;
+
+    padding-top: 7px;
+
+    border-top: 1px solid rgba(
+        126,
+        91,
+        43,
+        0.42
+    );
+}
+
+.converter-result {
+    color: #998978;
+
+    font-size: 9px;
+}
+
+.converter-result strong {
+    color: #ddbf78;
+}
+
+
+/* =========================================================
+   ESTOQUE DE CONVERSORES
+========================================================= */
+
+.converter-stock-panel {
+    padding: 10px;
+
+    border: 1px solid #624b2a;
+
+    background:
+        rgba(
+            31,
+            24,
+            19,
+            0.8
+        );
+}
+
+.converter-stock-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    gap: 8px;
+}
+
+.converter-stock-card {
+    padding: 10px;
+
+    border: 1px solid #624b2a;
+
+    background:
+        linear-gradient(
+            135deg,
+            #382b20,
+            #211914
+        );
+}
+
+.converter-stock-name {
+    color: #d7bd82;
+
+    font-size: 10px;
+
+    font-weight: 700;
+}
+
+.converter-stock-quantity {
+    margin-top: 5px;
+
+    color: #e2c577;
+
+    font-size: 18px;
+
+    font-weight: 700;
+}
+
+.converter-stock-details {
+    margin-top: 3px;
+
+    color: #897b6b;
+
+    font-size: 8px;
+}
+
+
+/* =========================================================
+   NPC SETTINGS
+========================================================= */
+
+.npc-settings-content {
+    display: grid;
+
+    grid-template-columns:
+        150px minmax(0, 1fr);
+
+    gap: 18px;
+
+    padding: 15px;
+}
+
+.npc-settings-preview {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 150px;
+    height: 150px;
+
+    border: 1px solid #74572c;
+
+    background:
+        radial-gradient(
+            circle,
+            #3a2d20,
+            #17120f
+        );
+}
+
+.npc-settings-image-preview {
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 120px;
+    height: 120px;
+
+    border: 1px solid #8c6b35;
+
+    overflow: hidden;
+
+    color: #756451;
+
+    font-size: 9px;
+}
+
+.npc-settings-image-preview img {
+    position: absolute;
+
+    width: 120px;
+    height: 120px;
+
+    object-fit: cover;
+}
+
+.npc-settings-info strong {
+    color: #d5b16a;
+
+    font-size: 11px;
+}
+
+.npc-settings-info p {
+    margin: 7px 0;
+
+    color: #8e8172;
+
+    font-size: 9px;
+
+    line-height: 1.6;
+}
+
+.npc-settings-actions,
+.backup-actions {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 7px;
+
+    margin-top: 11px;
+}
+
+
+/* =========================================================
+   BACKUP
+========================================================= */
+
+.backup-content p {
+    margin: 0;
+
+    color: #8e8172;
+
+    font-size: 10px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   MODAL NPC
+========================================================= */
+
+.npc-crop-modal {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 9999;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    background: rgba(
+        0,
+        0,
+        0,
+        0.78
+    );
+}
+
+.npc-crop-modal-content {
+    width: min(
+        520px,
+        100%
+    );
+
+    padding: 18px;
+
+    border: 1px solid #8b6a35;
+
+    background:
+        linear-gradient(
+            145deg,
+            #34291f,
+            #1d1713
+        );
+
+    box-shadow:
+        0 20px 70px rgba(
+            0,
+            0,
+            0,
+            0.7
+        );
+}
+
+.npc-crop-modal-title {
+    margin: 0 0 13px;
+
+    color: #dfbb6e;
+
+    font-size: 13px;
+
+    font-weight: 700;
+}
+
+.npc-crop-canvas-wrapper {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 13px;
+}
+
+.npc-crop-canvas {
+    display: block;
+
+    width: 240px;
+    height: 240px;
+
+    border: 1px solid #8a6935;
+
+    background: #0f0c09;
+
+    cursor: grab;
+}
+
+.npc-crop-canvas.dragging {
+    cursor: grabbing;
+}
+
+.npc-crop-controls {
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    margin-bottom: 13px;
+}
+
+.npc-crop-controls label {
+    color: #a39179;
+
+    font-size: 9px;
+}
+
+.npc-crop-controls input[type="range"] {
+    flex: 1;
+}
+
+.npc-crop-actions {
+    display: flex;
+
+    justify-content: flex-end;
+
+    gap: 7px;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.app-footer {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 12px;
+
+    margin-top: 22px;
+
+    padding-top: 10px;
+
+    border-top: 1px solid rgba(
+        126,
+        91,
+        43,
+        0.28
+    );
+
+    color: #66594d;
+
+    font-size: 8px;
+
+    letter-spacing: 0.7px;
+
+    text-transform: uppercase;
+}
+
+.app-footer::after {
+    content:
+        "Ragnarok Online © GRAVITY Co., Ltd. All rights reserved.";
+    display: block;
+    color: #66594d;
+    font-size: 8px;
+    letter-spacing: 0.7px;
+    text-transform: uppercase;
+    text-align: right;
+}
+
+.app-footer a {
+    color: #66594d;
+    font-size: 8px;
+    letter-spacing: 0.7px;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+.app-footer a:hover {
+    color: #d3b16c;
+}
+
+
+/* =========================================================
+   SCROLLBAR
+========================================================= */
+
+::-webkit-scrollbar {
+    width: 9px;
+    height: 9px;
+}
+
+::-webkit-scrollbar-track {
+    background: #15100d;
+}
+
+::-webkit-scrollbar-thumb {
+    border: 2px solid #15100d;
+
+    border-radius: 8px;
+
+    background: #614921;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #89662f;
+}
+
+
+/* =========================================================
+   RESPONSIVO
+========================================================= */
+
+@media (max-width: 1000px) {
+
+    .dashboard-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+    .summary-grid {
+        grid-template-columns:
+            repeat(3, minmax(0, 1fr));
+    }
+
+    .converter-stock-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+}
+
+@media (max-width: 760px) {
+
+    .app {
+        width: calc(100% - 16px);
+
+        margin: 8px auto;
+
+        padding: 10px;
+    }
+
+    .npc-header {
+        grid-template-columns: 1fr;
+    }
+
+    .npc-portrait {
+        justify-self: center;
+    }
+
+    .filters-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .filter-button-area {
+        align-items: stretch;
+    }
+
+    .filter-button-area button {
+        width: 100%;
+    }
+
+    .npc-settings-content {
+        grid-template-columns: 1fr;
+    }
+
+    .npc-settings-preview {
+        justify-self: center;
+    }
+
+    .converter-card {
+        grid-template-columns:
+            1fr;
+    }
+
+    .converter-sprite-box {
+        margin-bottom: 5px;
+    }
+
+    .converter-material,
+    .converter-stats,
+    .converter-form,
+    .converter-results {
+        grid-column: 1;
+    }
+
+}
+
+@media (max-width: 560px) {
+
+    .dashboard-grid,
+    .summary-grid,
+    #inventory-grid,
+    .converter-stock-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .main-navigation {
+        overflow-x: auto;
+
+        flex-wrap: nowrap;
+    }
+
+    .nav-button {
+        flex-shrink: 0;
+    }
+
+    .app-footer {
+        flex-direction: column;
+
+        align-items: flex-start;
+    }
+
+}
