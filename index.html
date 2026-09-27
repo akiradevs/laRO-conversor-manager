@@ -752,56 +752,51 @@
             </div>
 
 
-            <div class="panel table-panel">
+                <div class="panel table-panel">
 
-                <div class="table-wrapper">
+                    <div class="table-wrapper">
 
-                    <table>
+                        <table class="purchase-history-table">
 
-                        <thead>
+                            <thead>
 
-                    <tr>
-                        <th>Data</th>
-                        <th>Conversor</th>
-                        <th>Quantidade</th>
-                        <th>Custo do lote</th>
-                        <th>Ação</th>
-                    </tr>
+                                <tr>
+                                    <th>Data</th>
+                                    <th>Conversor</th>
+                                    <th>Quantidade</th>
+                                    <th>Preço Unitário</th>
+                                    <th>Custo do Lote</th>
+                                    <th>Observação</th>
+                                    <th>Ação</th>
+                                </tr>
 
-                        </thead>
+                            </thead>
 
-                        <tbody id="purchase-table">
+                            <tbody id="purchase-table">
 
-                            <tr>
+                                <tr>
+                                    <td colspan="7" class="empty-state">
+                                        Nenhuma compra registrada.
+                                    </td>
+                                </tr>
 
-                                <td
-                                    colspan="5"
-                                    class="empty-state"
-                                >
-                                    Nenhuma compra registrada.
-                                </td>
+                            </tbody>
 
-                            </tr>
+                        </table>
 
-                        </tbody>
-
-                    </table>
+                    </div>
 
                 </div>
 
-            </div>
+            </section>      
+            <!-- =================================================
+                ESTOQUE
+            ================================================== -->
 
-        </section>
-
-
-        <!-- =================================================
-             ESTOQUE
-        ================================================== -->
-
-        <section
-            id="screen-inventory"
-            class="screen"
-        >
+            <section
+                id="screen-inventory"
+                class="screen"
+            >
 
             <div class="page-header">
 
@@ -1084,15 +1079,17 @@
 
                         <thead>
 
-                            <tr>
+                    <tr>
 
-                                <th>Data</th>
-                                <th>Conversor</th>
-                                <th>Quantidade</th>
-                                <th>Custo do lote</th>
-                                <th>Ação</th>
+                        <th>Data</th>
+                        <th>Material</th>
+                        <th>Quantidade</th>
+                        <th>Valor Unitário</th>
+                        <th>Custo do Lote</th>
+                        <th>Observação</th>
+                        <th>Ação</th>
 
-                            </tr>
+                    </tr>
 
                         </thead>
 
@@ -1101,7 +1098,7 @@
                             <tr>
 
                                 <td
-                                    colspan="5"
+                                    colspan="7"
                                     class="empty-state"
                                 >
                                     Nenhuma produção registrada.

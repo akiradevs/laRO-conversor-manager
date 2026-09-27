@@ -729,116 +729,148 @@ function getFilteredPurchases() {
 
 function renderPurchases() {
 
-    const purchases =
-        getFilteredPurchases();
+    const tableBody = document.getElementById("purchase-table");
 
-
-    const table =
-        document.getElementById(
-            "purchase-table"
-        );
-
-
-    if (!table) {
+    if (!tableBody) {
         return;
     }
 
+    const monthFilter = document.getElementById("purchase-month-filter");
+    const materialFilter = document.getElementById("purchase-material-filter");
 
-    if (!purchases.length) {
+    const selectedMonth = monthFilter
+        ? monthFilter.value
+        : "";
 
-        table.innerHTML = `
+    const selectedMaterial = materialFilter
+        ? materialFilter.value
+        : "";
 
-            <tr>
+    let purchases = [...appData.purchases];
 
-                <td
-                    colspan="7"
-                    class="empty-state"
-                >
-                    Nenhuma compra encontrada.
-                </td>
+    if (selectedMonth) {
 
-            </tr>
+        purchases = purchases.filter(purchase => {
 
-        `;
+            return String(purchase.date || "").startsWith(
+                selectedMonth
+            );
 
-    } else {
-
-        table.innerHTML =
-            purchases
-                .map(
-                    function (purchase) {
-
-                        return `
-
-                            <tr>
-
-                                <td>
-                                    ${formatDate(
-                                        purchase.date
-                                    )}
-                                </td>
-
-                                <td>
-                                    ${escapeHtml(
-                                        purchase.materialName
-                                    )}
-                                </td>
-
-                                <td>
-                                    ${formatNumber(
-                                        purchase.quantity
-                                    )}
-                                </td>
-
-                                <td>
-                                    ${formatZeny(
-                                        purchase.unitPrice
-                                    )}
-                                </td>
-
-                                <td>
-                                    ${formatZeny(
-                                        purchase.total
-                                    )}
-                                </td>
-
-                                <td>
-                                    ${
-                                        purchase.note
-                                            ? escapeHtml(
-                                                purchase.note
-                                            )
-                                            : "-"
-                                    }
-                                </td>
-
-                                <td>
-
-                                    <button
-                                        type="button"
-                                        class="table-action-button"
-                                        onclick="deletePurchase('${purchase.id}')"
-                                    >
-                                        Excluir
-                                    </button>
-
-                                </td>
-
-                            </tr>
-
-                        `;
-
-                    }
-                )
-                .join("");
+        });
 
     }
 
+    if (selectedMaterial) {
 
-    updatePurchaseSummary(
-        purchases
-    );
+        purchases = purchases.filter(purchase => {
 
+            return purchase.materialId === selectedMaterial;
+
+        });
+
+    }
+
+    purchases.sort((a, b) => {
+
+        const dateA = new Date(
+            `${a.date || ""}T00:00:00`
+        ).getTime();
+
+        const dateB = new Date(
+            `${b.date || ""}T00:00:00`
+        ).getTime();
+
+        return dateB - dateA;
+
+    });
+
+    if (purchases.length === 0) {
+
+        tableBody.innerHTML = `
+            <tr>
+                <td colspan="7" class="empty-state">
+                    Nenhuma compra registrada.
+                </td>
+            </tr>
+        `;
+
+        updatePurchaseSummary([]);
+
+        return;
+    }
+
+    tableBody.innerHTML = purchases.map(purchase => {
+
+        return `
+            <tr>
+
+                <td>
+                    ${formatDate(purchase.date)}
+                </td>
+
+                <td>
+                    ${escapeHtml(
+                        purchase.materialName || ""
+                    )}
+                </td>
+
+                <td>
+                    ${formatNumber(
+                        purchase.quantity
+                    )}
+                </td>
+
+                <td>
+                    ${formatCurrency(
+                        purchase.unitPrice
+                    )}
+                </td>
+
+                <td>
+                    ${formatCurrency(
+                        purchase.total
+                    )}
+                </td>
+
+                <td>
+                    ${escapeHtml(
+                        purchase.note || "-"
+                    )}
+                </td>
+
+                <td>
+                    <button
+                        type="button"
+                        class="table-action-button"
+                        data-delete-purchase="${purchase.id}"
+                    >
+                        Excluir
+                    </button>
+                </td>
+
+            </tr>
+        `;
+
+    }).join("");
+
+    tableBody
+        .querySelectorAll("[data-delete-purchase]")
+        .forEach(button => {
+
+            button.addEventListener(
+                "click",
+                () => {
+
+                    deletePurchase(
+                        button.dataset.deletePurchase
+                    );
+
+                }
+            );
+
+        });
+
+    updatePurchaseSummary(purchases);
 }
 
 
