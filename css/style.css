@@ -2213,3 +2213,52 @@ tbody tr:hover td {
     }
 
 }
+/* =========================================================
+   HISTÓRICO DE COMPRAS
+========================================================= */
+
+.purchase-history-table {
+    min-width: 820px;
+}
+
+.purchase-history-table th,
+.purchase-history-table td {
+    white-space: nowrap;
+}
+
+.purchase-history-table th:nth-child(1),
+.purchase-history-table td:nth-child(1) {
+    width: 90px;
+}
+
+.purchase-history-table th:nth-child(2),
+.purchase-history-table td:nth-child(2) {
+    min-width: 150px;
+}
+
+.purchase-history-table th:nth-child(3),
+.purchase-history-table td:nth-child(3) {
+    width: 100px;
+}
+
+.purchase-history-table th:nth-child(4),
+.purchase-history-table td:nth-child(4) {
+    width: 125px;
+}
+
+.purchase-history-table th:nth-child(5),
+.purchase-history-table td:nth-child(5) {
+    width: 125px;
+}
+
+.purchase-history-table th:nth-child(6),
+.purchase-history-table td:nth-child(6) {
+    min-width: 180px;
+    white-space: normal;
+}
+
+.purchase-history-table th:nth-child(7),
+.purchase-history-table td:nth-child(7) {
+    width: 90px;
+    text-align: center;
+}
