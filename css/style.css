@@ -2218,42 +2218,44 @@ tbody tr:hover td {
 ========================================================= */
 
 .purchase-history-table {
-    min-width: 820px;
+    min-width: 900px;
+    table-layout: fixed;
 }
 
 .purchase-history-table th,
 .purchase-history-table td {
-    white-space: nowrap;
+    box-sizing: border-box;
 }
 
 .purchase-history-table th:nth-child(1),
 .purchase-history-table td:nth-child(1) {
-    width: 90px;
+    width: 110px;
 }
 
 .purchase-history-table th:nth-child(2),
 .purchase-history-table td:nth-child(2) {
-    min-width: 150px;
+    width: 180px;
 }
 
 .purchase-history-table th:nth-child(3),
 .purchase-history-table td:nth-child(3) {
-    width: 100px;
+    width: 110px;
+    text-align: center;
 }
 
 .purchase-history-table th:nth-child(4),
 .purchase-history-table td:nth-child(4) {
-    width: 125px;
+    width: 140px;
 }
 
 .purchase-history-table th:nth-child(5),
 .purchase-history-table td:nth-child(5) {
-    width: 125px;
+    width: 140px;
 }
 
 .purchase-history-table th:nth-child(6),
 .purchase-history-table td:nth-child(6) {
-    min-width: 180px;
+    width: 200px;
     white-space: normal;
 }
 
