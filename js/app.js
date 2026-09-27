@@ -821,15 +821,15 @@ function renderPurchases() {
                 </td>
 
                 <td>
-                    ${formatCurrency(
-                        purchase.unitPrice
-                    )}
+                    ${formatZeny(
+                    purchase.unitPrice
+                )}
                 </td>
 
                 <td>
-                    ${formatCurrency(
-                        purchase.total
-                    )}
+                     ${formatZeny(
+                purchase.total
+                )}
                 </td>
 
                 <td>
